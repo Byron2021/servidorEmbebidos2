@@ -25,14 +25,14 @@ function LED1_Off(){
   { if (contador==0)
       {
       message = new Paho.MQTT.Message("ENCENDER");
-      message.destinationName = "byronzeto@gmai.com/test1";
+      message.destinationName = "byronzeto@gmail.com/test1";
       client.send(message);
       contador=1;
       }
     else
       {
       message = new Paho.MQTT.Message("APAGAR");
-      message.destinationName = "byronzeto@gmai.com/test1";
+      message.destinationName = "byronzeto@gmail.com/test1";
       client.send(message);
       contador=0;
       }
