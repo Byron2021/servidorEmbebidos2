@@ -4,18 +4,42 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>
 <script src="/static/js/index.js"></script>
 
-<title>CONTROL DE UN SENSOR Y SU HISTORIAL</title>
+<title>Sistemas Embebidos</title>
+
+<style>
+	.cuadro{border: black 2px;
+		width: 150px;
+		height: 300px;
+		margin: 20px;
+	}
+	</style>
 
 <script src="/static/js/login.js"></script>
 </head>
 <body>
 
-<h1>CONTROL DE UN SENSOR Y SU HISTORIAL </h1>
+<h1>Control del Led Rojo</h1>
 <img id="imagen" src="/static/images/iot.png" alt="user">
 <h1>Sensor:</h><h id="sensor">--</h1>
 <button id = 'btn' type="button" onclick="cambio();" >Encender</button>
-<button id = 'his' type="button" onclick="his();" >Historial</button>
-<script>	
+	
+<h1>Historial</h1>
+<button id = 'btn2' type="button" onclick="historial();" >Ver historial</button>
+<div id="cuadro" class="cuadro" >Vacío!</div>
+
+<script>
+/*
+function LED1_On() {
+	alert("led on");
+	console.log("led on");
+  
+}
+function LED1_Off(){
+	alert("led off");
+	console.log("led off");
+}
+*/
+	
 </script>
 	
 <script>claveAcceso();</script>
