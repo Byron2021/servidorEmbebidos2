@@ -1,43 +1,38 @@
-//https://www.eclipse.org/paho/clients/js/
-/*
-function LED1_On() {
-	
-	//alert("led on");
-	console.log("led on");
-	//document.getElementById("sensor").innerHTML="led on";
-    	message = new Paho.MQTT.Message("ENCENDER");
-    	message.destinationName = "cristian.manosalvas@unach.edu.ec/led1";
-    	client.send(message);
 
-}*/
-/*
-function LED1_Off(){
-	//alert("led off");
-	 console.log("led off");
-	//document.getElementById("sensor").innerHTML="led off";
-	message = new Paho.MQTT.Message("APAGAR");
-	message.destinationName = "cristian.manosalvas@unach.edu.ec/led1";
-	client.send(message);
-}*/
-  
   var btn=document.getElementById('btn'), contador=0;
   function cambio()
   { if (contador==0)
       {
-      message = new Paho.MQTT.Message("ENCENDER");
-      message.destinationName = "byronzeto@gmail.com/test1";
+      message = new Paho.MQTT.Message("LED ENCENDIDO");
+      message.destinationName = "byronzeto@gmail.com/led1";
       client.send(message);
       contador=1;
       }
     else
       {
-      message = new Paho.MQTT.Message("APAGAR");
-      message.destinationName = "byronzeto@gmail.com/test1";
+      message = new Paho.MQTT.Message("LED APAGADO");
+      message.destinationName = "byronzeto@gmail.com/led1";
       client.send(message);
       contador=0;
       }
   
   }
+
+
+  function historial()
+      {
+      client.subscribe("byronzeto@gmail.com/led2");
+      message = new Paho.MQTT.Message("LEER");
+      message.destinationName = "byronzeto@gmail.com/led1";
+      client.send(message);
+      }
+
+	
+
+
+
+
+
 
 
 // Create a client instance
@@ -64,16 +59,19 @@ function LED1_Off(){
     // Once a connection has been made, make a subscription and send a message.
     console.log("Conectado...");
 	
-    client.subscribe("byronzeto@gmail.com/test");
+    client.subscribe("byronzeto@gmail.com/led");	  
     message = new Paho.MQTT.Message("hola desde la web");
-    message.destinationName = "byronzeto@gmail.com/test1";
+    message.destinationName = "byronzeto@gmail.com/led1";
     client.send(message);
+
+	  
+
+
 	
   }
 
   function doFail(e){
-    console.log(e);
-	
+    console.log(e);	
   }
 
   // called when the client loses its connection
@@ -84,19 +82,21 @@ function LED1_Off(){
   }
 
   // called when a message arrives
+var register;
   function onMessageArrived(message) {
     console.log("onMessageArrived:"+message.payloadString);
-	  document.getElementById("sensor").innerHTML=message.payloadString;
-	  if(message.payloadString===' Encendido'){
-		  document.getElementById("imagen").src="http://www.clker.com/cliparts/M/h/R/9/8/H/red-led-on-md.png";
-	  } else if(message.payloadString===' Apagado'){
-		  document.getElementById("imagen").src="http://www.clker.com/cliparts/D/M/r/s/n/P/led-red-off-md.png";
+	if (message.destinationName=="byronzeto@gmail.com/led2"){
+		document.getElementById("cuadro").innerHTML=message.payloadString;
 	  }
-	  if(message.payloadString===' Encendido'){
+	  if(message.payloadString==='LED ENCENDIDO'){
+		  document.getElementById("sensor").innerHTML=message.payloadString;
+		  document.getElementById("imagen").src="http://www.clker.com/cliparts/M/h/R/9/8/H/red-led-on-md.png";
 		  document.getElementById("btn").innerHTML="Apagar";
-	  }else if(message.payloadString===' Apagado'){
+	  } else if(message.payloadString==='LED APAGADO'){
+		  document.getElementById("sensor").innerHTML=message.payloadString;
+		  document.getElementById("imagen").src="http://www.clker.com/cliparts/D/M/r/s/n/P/led-red-off-md.png";
 		  document.getElementById("btn").innerHTML="Encender";
 	  }
+	   	  
 	  
   }
-  
