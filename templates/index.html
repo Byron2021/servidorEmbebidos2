@@ -4,30 +4,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>
 <script src="/static/js/index.js"></script>
 
-<title>Sistemas Embebidos</title>
+<title>CONTROL DE UN SENSOR Y SU HISTORIAL</title>
 
 <script src="/static/js/login.js"></script>
 </head>
 <body>
 
-<h1> ENCENDER Y APAGAR UN LED CON UN SOLO BOTON </h1>
+<h1>CONTROL DE UN SENSOR Y SU HISTORIAL </h1>
 <img id="imagen" src="/static/images/iot.png" alt="user">
 <h1>Sensor:</h><h id="sensor">--</h1>
 <button id = 'btn' type="button" onclick="cambio();" >Encender</button>
-
-<script>
-/*
-function LED1_On() {
-	alert("led on");
-	console.log("led on");
-  
-}
-function LED1_Off(){
-	alert("led off");
-	console.log("led off");
-}
-*/
-	
+<button id = 'his' type="button" onclick="his();" >Encender</button>
+<script>	
 </script>
 	
 <script>claveAcceso();</script>
