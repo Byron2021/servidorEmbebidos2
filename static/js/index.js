@@ -1,37 +1,18 @@
-  var btn=document.getElementById('btn'), contador=0, contador2=0;
+  var btn=document.getElementById('btn'), contador=0;
   function cambio()
   { if (contador==0)
       {
-      message = new Paho.MQTT.Message("LED 1 ENCENDIDO");
+      message = new Paho.MQTT.Message("ENCENDIDO");
       message.destinationName = "byronzeto@gmail.com/led1";
       client.send(message);
       contador=1;
       }
     else
       {
-      message = new Paho.MQTT.Message("LED 1 APAGADO");
+      message = new Paho.MQTT.Message("APAGADO");
       message.destinationName = "byronzeto@gmail.com/led1";
       client.send(message);
       contador=0;
-      }
-  
-  }
-
-  
-  function cambio2()
-  { if (contador2==0)
-      {
-      message = new Paho.MQTT.Message("LED 2 ENCENDIDO");
-      message.destinationName = "byronzeto@gmail.com/led1";
-      client.send(message);
-      contador2=1;
-      }
-    else
-      {
-      message = new Paho.MQTT.Message("LED 2 APAGADO");
-      message.destinationName = "byronzeto@gmail.com/led1";
-      client.send(message);
-      contador2=0;
       }
   
   }
@@ -69,14 +50,10 @@
     // Once a connection has been made, make a subscription and send a message.
     console.log("Conectado...");
 	
-    client.subscribe("byronzeto@gmail.com/led");	  
+    client.subscribe("byronzeto@gmail.com/led1");	  
     message = new Paho.MQTT.Message("hola desde la web");
     message.destinationName = "byronzeto@gmail.com/led1";
     client.send(message);
-
-	  
-
-
 	
   }
 
@@ -98,26 +75,14 @@ var register;
 	if (message.destinationName=="byronzeto@gmail.com/led2"){
 		document.getElementById("cuadro").innerHTML=message.payloadString;
 	  }
-	  if(message.payloadString==='Led 1 Encendido'){
+	  if(message.payloadString==='1'){
 		  document.getElementById("sensor").innerHTML=message.payloadString;
 		  document.getElementById("imagen").src="http://www.clker.com/cliparts/M/h/R/9/8/H/red-led-on-md.png";
-		  document.getElementById("btn").innerHTML="LED 1 APAGADO";
-	  } else if(message.payloadString==='Led 1 Apagado'){
+		  document.getElementById("btn").innerHTML="APAGAR";
+	  } else if(message.payloadString==='0'){
 		  document.getElementById("sensor").innerHTML=message.payloadString;
 		  document.getElementById("imagen").src="http://www.clker.com/cliparts/D/M/r/s/n/P/led-red-off-md.png";
-		  document.getElementById("btn").innerHTML="LED 1 ENCENDIDO";
+		  document.getElementById("btn").innerHTML="ENCENDER";
 	  }
-	 
-	  if(message.payloadString==='Led 2 On'){
-		  document.getElementById("sensor2").innerHTML="Led 1 Encendido";
-		  document.getElementById("imagen2").src="http://www.clker.com/cliparts/0/8/h/5/r/v/light-blue-2-led-circle-md.png";
-	  	  document.getElementById("btn2").innerHTML="LED 2 APAGADO";
-	  }else if(message.payloadString==='Led 2 Off'){
-		  document.getElementById("sensor2").innerHTML="Led 1 Apagado";
-		  document.getElementById("imagen2").src="http://www.clker.com/cliparts/P/2/n/w/N/v/dark-dark-2-blue-led-circle-md.png";
-		  document.getElementById("btn2").innerHTML="LED 2 ENCENDIDO";
-	  }
-
-	  	  
 	  
   }
