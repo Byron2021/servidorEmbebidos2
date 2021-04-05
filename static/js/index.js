@@ -50,7 +50,7 @@
     // Once a connection has been made, make a subscription and send a message.
     console.log("Conectado...");
 	
-    client.subscribe("byronzeto@gmail.com/led1");	  
+    client.subscribe("byronzeto@gmail.com/led");	  
     message = new Paho.MQTT.Message("hola desde la web");
     message.destinationName = "byronzeto@gmail.com/led1";
     client.send(message);
